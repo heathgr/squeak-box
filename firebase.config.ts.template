@@ -1,0 +1,15 @@
+// firebase.config.ts is not in the project repo
+// firebase config object can be obtained from the firebase console
+// once the config object has been correctly defined this file should be renamed to 'firebase.config.ts' and these comments should be deleted
+
+const config = {
+  apiKey: API KEY GOES HERE,
+  authDomain: AUTH DOMAIN GOES HERE,
+  databaseURL: DATABASE URL GOES HERE,
+  projectId: PROJECT ID GOES HERE,
+  storageBucket: STORAGE BUCKET GOES HERE,
+  messagingSenderId: MESSAGE SENDER ID GOES HERE,
+  appId: APP ID GOES HERE,
+}
+
+export default config
