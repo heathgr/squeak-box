@@ -1,0 +1,40 @@
+{
+  "name": "squeak-box",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "test": "jest"
+  },
+  "author": "Grant Heath",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@s-is-for-store/react": "^3.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "s-is-for-store": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/enzyme": "^3.10.4",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.9.1",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "babel-jest": "^25.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "firebase-tools": "^7.12.1",
+    "jest": "^25.1.0",
+    "ts-loader": "^6.2.1",
+    "tslint": "^6.0.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}

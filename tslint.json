@@ -1,0 +1,29 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "indent": [true, "spaces", 2],
+    "interface-name": {
+      "severity": "error",
+      "options": "never-prefix"
+    },
+    "quotemark": {
+      "severity": "error",
+      "options": "single"
+    },
+    "semicolon": {
+      "severity": "error",
+      "options": "never"
+    },
+    "ter-indent": {
+      "severity": "error",
+      "options": [2, "spaces"]
+    }
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ]
+}
