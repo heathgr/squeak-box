@@ -2,7 +2,7 @@ import { User } from 'firebase'
 
 import { updateOnAuthChange, onAuthStateChangedHandler } from './auth.updater'
 import authStore from '../stores/auth.store'
-import { auth } from '../firebase'
+import { auth } from '../services'
 
 describe('Auth Updater', () => {
   it('Subscribes to the onAuthStateChanged observable.', () => {
