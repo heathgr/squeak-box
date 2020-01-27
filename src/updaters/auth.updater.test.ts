@@ -1,6 +1,6 @@
 import { User } from 'firebase'
 
-import { updateOnAuthChange, handleOnAuthStateChanged } from './auth.updater'
+import { onAuthStateChanged, handleOnAuthStateChanged } from './auth.updater'
 import authStore from '../stores/auth.store'
 import { auth } from '../services'
 
@@ -8,7 +8,7 @@ describe('Auth Updater', () => {
   it('Subscribes to the onAuthStateChanged observable.', () => {
     const authStateChangedSpy = jest.spyOn(auth, 'onAuthStateChanged')
 
-    updateOnAuthChange()
+    onAuthStateChanged()
 
     expect(authStateChangedSpy).toHaveBeenCalledWith(handleOnAuthStateChanged)
   })
