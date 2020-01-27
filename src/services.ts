@@ -16,7 +16,6 @@ export const signIn = () => {
 
 firebase.auth().getRedirectResult().then((result) => {
   if (result.credential) {
-    console.log('it worked!!!')
     const res = result as any
     const token = res.credential.accessToken
   }

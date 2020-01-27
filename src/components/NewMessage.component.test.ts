@@ -1,3 +1,5 @@
 describe('New Message Component', () => {
-  xit('stuff', () => {})
+  xit('stuff', () => {
+    expect(true).toEqual(false)
+  })
 })
