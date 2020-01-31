@@ -1,15 +1,15 @@
 import { createElement as e } from 'react'
 import { render } from 'react-dom'
-import { onAuthStateChanged } from './updaters/auth.updater'
-import { onMessagesUpdated } from './updaters/messages.updater'
+import { listenForAuthStateChanges } from './updaters/auth.updater'
+import { listenForMessageUpdates } from './updaters/messages.updater'
 import { App } from './components/App.component'
 
 // initializes firebase
 import './services'
 
-// start update listeners
-onAuthStateChanged()
-onMessagesUpdated()
+// call listeners
+listenForAuthStateChanges()
+listenForMessageUpdates()
 
 const appContainer = document.getElementById('app')
 

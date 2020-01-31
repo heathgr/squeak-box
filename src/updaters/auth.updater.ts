@@ -6,6 +6,6 @@ export const handleOnAuthStateChanged = (user: User | null) => {
   authStore.update({ user })
 }
 
-export const onAuthStateChanged = () => {
+export const listenForAuthStateChanges = () => {
   auth.onAuthStateChanged(handleOnAuthStateChanged)
 }
