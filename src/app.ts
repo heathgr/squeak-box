@@ -2,7 +2,7 @@ import { createElement as e } from 'react'
 import { render } from 'react-dom'
 import { listenForAuthStateChanges } from './updaters/auth.updater'
 import { listenForMessageUpdates } from './updaters/messages.updater'
-import { App } from './components/App.component'
+import App from './components/App.component'
 
 // initializes firebase
 import './services'
