@@ -7,7 +7,7 @@ const { Timestamp } = firestore
 
 import * as useStoreHook from '@s-is-for-store/react'
 import Messages from './Messages.component'
-import { Message } from './Message.component'
+import Message from './Message.component'
 
 describe('Messages Component', () => {
   it('Displays a list of messages', () => {
@@ -29,7 +29,8 @@ describe('Messages Component', () => {
     expect(messageCount).toEqual(messages.length)
 
     messages.forEach((message, i) => {
-      expect(subject.find(Message).at(i).prop('message')).toEqual(message)
+      expect(subject.find(Message).at(i).prop('message')).toEqual(message.message)
+      expect(subject.find(Message).at(i).prop('createdAt')).toEqual(message.createdAt)
     })
   })
 })

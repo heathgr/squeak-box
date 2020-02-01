@@ -1,8 +1,6 @@
 import { createElement as e, FC } from 'react'
 import { Message as MessageData } from '../stores/messages.store'
 
-interface MessageProps {
-  message: MessageData
-}
+const Message: FC<MessageData> = (props) => e('div', null, props.text)
 
-export const Message: FC<MessageProps> = (props) => e('div', null, ':)')
+export default Message

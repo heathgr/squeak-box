@@ -2,7 +2,7 @@ import { createStore } from 's-is-for-store'
 import { Timestamp } from '@google-cloud/firestore'
 
 export interface Message {
-  message: string,
+  text: string,
   createdAt: Timestamp,
 }
 
