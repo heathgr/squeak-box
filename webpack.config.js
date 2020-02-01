@@ -1,13 +1,15 @@
-const path = require('path');
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const path = require('path')
 
 module.exports = {
   entry: path.join(__dirname, 'src/app.ts'),
   devServer: {
-    contentBase: path.join(__dirname, 'static')
+    contentBase: path.join(__dirname, 'static'),
   },
   output: {
     filename: 'app.js',
-    path: __dirname
+    path: __dirname,
   },
   module: {
     rules: [
@@ -16,9 +18,9 @@ module.exports = {
         loader: 'ts-loader',
         exclude: /node_modules/,
       },
-    ]
+    ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"]
+    extensions: ['.tsx', '.ts', '.js'],
   },
-};
+}

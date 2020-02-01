@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "npm test && webpack -o ./public/app.js --mode \"production\" && firebase deploy",
     "start": "webpack-dev-server",
     "test": "eslint --ext .ts ./src && jest"
   },
