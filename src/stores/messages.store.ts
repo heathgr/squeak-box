@@ -3,16 +3,16 @@ import { firestore } from 'firebase'
 import 'firebase/firestore'
 
 
-export interface Message {
-  text: string,
+export interface MessageState {
+  message: string,
   createdAt: firestore.Timestamp,
 }
 
-export interface Messages {
-  messages: Message[],
+export interface MessagesState {
+  messages: MessageState[],
 }
 
-export const initialState: Messages = {
+export const initialState: MessagesState = {
   messages: [],
 }
 

@@ -8,7 +8,7 @@ import {
   messagesQuery,
   createMessage,
 } from './messages.updater'
-import messagesStore, { Message } from '../stores/messages.store'
+import messagesStore, { MessageState } from '../stores/messages.store'
 
 const { Timestamp } = firestore
 
@@ -25,10 +25,10 @@ describe('Messages Updater', () => {
 
     const testSnapshot = [
       {
-        data: (): Message => message1,
+        data: (): MessageState => message1,
       },
       {
-        data: (): Message => message2,
+        data: (): MessageState => message2,
       },
     ]
 
