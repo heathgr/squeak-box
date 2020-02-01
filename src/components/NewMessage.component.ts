@@ -1,7 +1,7 @@
-import { createElement as e, useState } from 'react'
+import { createElement as e, FC, useState } from 'react'
 import { createMessage } from '../updaters/messages.updater'
 
-export const NewMessage = () => {
+const NewMessage: FC = () => {
   const [inputValue, setInputValue] = useState('')
 
   return e(
@@ -10,7 +10,7 @@ export const NewMessage = () => {
     e(
       'input',
       {
-        ['data-test-id']: 'message-input',
+        'data-test-id': 'message-input',
         onChange: (evt) => {
           setInputValue(evt.target.value.substring(0, 80))
         },
@@ -24,9 +24,11 @@ export const NewMessage = () => {
       {
         onClick: () => {
           createMessage(inputValue)
-        }
+        },
       },
-      'Send'
-    )
+      'Send',
+    ),
   )
 }
+
+export default NewMessage

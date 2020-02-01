@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme'
 import { createElement as e } from 'react'
 
-import * as services from  '../services'
-import { Unauthenticated } from './Unauthenticated.component'
+import * as services from '../services'
+import Unauthenticated from './Unauthenticated.component'
 
 describe('Unauthorized Component', () => {
   it('Should have a button that calls signIn().', () => {

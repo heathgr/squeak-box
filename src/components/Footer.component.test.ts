@@ -1,14 +1,13 @@
 import { shallow } from 'enzyme'
 import { createElement as e } from 'react'
+import { User } from 'firebase'
 
 import authStore, { initialState } from '../stores/auth.store'
-import { Footer } from '../components/Footer.component'
-import { Unauthenticated } from '../components/Unauthenticated.component'
-import { User } from 'firebase'
-import { NewMessage } from './NewMessage.component'
+import Footer from './Footer.component'
+import Unauthenticated from './Unauthenticated.component'
+import NewMessage from './NewMessage.component'
 
 describe('Footer Component', () => {
-
   beforeEach(() => {
     authStore.update(initialState)
   })

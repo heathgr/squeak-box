@@ -1,9 +1,14 @@
 // @ts-nocheck
-
-import { listenForMessageUpdates, messagesCollection, messagesQuery, createMessage } from '../updaters/messages.updater'
-import messagesStore from '../stores/messages.store'
 import { firestore } from 'firebase'
 import 'firebase/firestore'
+
+import {
+  listenForMessageUpdates,
+  messagesCollection,
+  messagesQuery,
+  createMessage,
+} from './messages.updater'
+import messagesStore, { Message } from '../stores/messages.store'
 
 const { Timestamp } = firestore
 
@@ -20,18 +25,18 @@ describe('Messages Updater', () => {
 
     const testSnapshot = [
       {
-        data: () => message1
+        data: (): Message => message1,
       },
       {
-        data: () => message2
-      }
+        data: (): Message => message2,
+      },
     ]
 
-    let snapshotHandler = (snapshot: any) => undefined
+    let snapshotHandler = (): void => undefined
 
     const snapshotSpy = jest
       .spyOn(messagesQuery, 'onSnapshot')
-      .mockImplementation((snapshot: any) => {
+      .mockImplementation((snapshot) => {
         snapshotHandler = snapshot
       })
     const updateSpy = jest.spyOn(messagesStore, 'update')
@@ -42,7 +47,7 @@ describe('Messages Updater', () => {
     expect(snapshotSpy).toHaveBeenCalledTimes(1)
     expect(updateSpy).toHaveBeenCalledTimes(1)
     expect(updateSpy).toHaveBeenCalledWith({
-      messages: [message1, message2]
+      messages: [message1, message2],
     })
   })
 
@@ -54,7 +59,7 @@ describe('Messages Updater', () => {
 
     const collectionSpy = jest
       .spyOn(messagesCollection, 'add')
-      .mockImplementation((document) => undefined)
+      .mockImplementation(() => undefined)
 
     createMessage(testMessage.message)
 

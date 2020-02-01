@@ -3,10 +3,10 @@ import { shallow } from 'enzyme'
 import { firestore } from 'firebase'
 import 'firebase/firestore'
 
-const { Timestamp } = firestore
-
 import Message from './Message.component'
 import { Message as MessageData } from '../stores/messages.store'
+
+const { Timestamp } = firestore
 
 describe('Message', () => {
   it('Renders the message text.', () => {

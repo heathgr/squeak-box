@@ -1,14 +1,14 @@
 import { firestore } from 'firebase'
 import 'firebase/firestore'
 
-const { Timestamp } = firestore
-
 import messagesStore, { Message } from '../stores/messages.store'
 import { db } from '../services'
 
+const { Timestamp } = firestore
+
 export const messagesCollection = db.collection('messages')
 export const messagesQuery = messagesCollection.orderBy('createdAt', 'desc')
-export const messageQuerySnapshotHandler = (snapshot: any) => {
+export const messageQuerySnapshotHandler = (snapshot: any): void => {
   const snapshotDocuments = snapshot
   const messages: Message[] = []
 
@@ -21,11 +21,11 @@ export const messageQuerySnapshotHandler = (snapshot: any) => {
   })
 }
 
-export const listenForMessageUpdates = () => {
+export const listenForMessageUpdates = (): void => {
   messagesQuery.onSnapshot(messageQuerySnapshotHandler)
 }
 
-export const createMessage = (message: string) => {
+export const createMessage = (message: string): void => {
   messagesCollection.add({
     message,
     createdAt: Timestamp.now(),

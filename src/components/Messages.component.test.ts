@@ -2,12 +2,12 @@ import { createElement as e } from 'react'
 import { shallow } from 'enzyme'
 import { firestore } from 'firebase'
 import 'firebase/firestore'
-
-const { Timestamp } = firestore
-
 import * as useStoreHook from '@s-is-for-store/react'
+
 import Messages from './Messages.component'
 import Message from './Message.component'
+
+const { Timestamp } = firestore
 
 describe('Messages Component', () => {
   it('Displays a list of messages', () => {
@@ -17,7 +17,7 @@ describe('Messages Component', () => {
       { message: 'test message 3', createdAt: Timestamp.now() },
     ]
 
-    const useStoreSpy = jest.spyOn(useStoreHook, 'useStore').mockReturnValue({
+    jest.spyOn(useStoreHook, 'useStore').mockReturnValue({
       messages,
     })
 

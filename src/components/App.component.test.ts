@@ -2,7 +2,7 @@ import { shallow } from 'enzyme'
 import { createElement as e } from 'react'
 
 import App from './App.component'
-import { Footer } from './Footer.component'
+import Footer from './Footer.component'
 import Messages from './Messages.component'
 
 describe('App Component', () => {

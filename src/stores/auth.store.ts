@@ -2,7 +2,7 @@ import { User } from 'firebase'
 import { createStore } from 's-is-for-store'
 
 export interface AuthStore {
-  user: User | null
+  user: User | null,
 }
 
 export const initialState: AuthStore = {
