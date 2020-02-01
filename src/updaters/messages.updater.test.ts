@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { firestore } from 'firebase'
+import { firestore } from 'firebase/app'
 import 'firebase/firestore'
 
 import {

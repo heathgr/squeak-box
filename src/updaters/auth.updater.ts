@@ -1,4 +1,4 @@
-import { User } from 'firebase'
+import { User } from 'firebase/app'
 import { auth } from '../services'
 import authStore from '../stores/auth.store'
 

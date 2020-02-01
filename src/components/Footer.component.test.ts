@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme'
 import { createElement as e } from 'react'
-import { User } from 'firebase'
+import { User } from 'firebase/app'
 
 import authStore, { initialState } from '../stores/auth.store'
 import Footer from './Footer.component'

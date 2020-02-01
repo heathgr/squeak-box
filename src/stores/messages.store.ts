@@ -1,5 +1,5 @@
 import { createStore } from 's-is-for-store'
-import { firestore } from 'firebase'
+import { firestore } from 'firebase/app'
 import 'firebase/firestore'
 
 

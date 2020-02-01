@@ -1,4 +1,4 @@
-import { User } from 'firebase'
+import { User } from 'firebase/app'
 
 import { listenForAuthStateChanges, handleOnAuthStateChanged } from './auth.updater'
 import authStore from '../stores/auth.store'

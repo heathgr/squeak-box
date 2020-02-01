@@ -1,6 +1,6 @@
 import { createElement as e } from 'react'
 import { shallow } from 'enzyme'
-import { firestore } from 'firebase'
+import { firestore } from 'firebase/app'
 import 'firebase/firestore'
 import * as useStoreHook from '@s-is-for-store/react'
 

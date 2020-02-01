@@ -1,4 +1,4 @@
-import { User } from 'firebase'
+import { User } from 'firebase/app'
 import { createStore } from 's-is-for-store'
 
 export interface AuthState {
