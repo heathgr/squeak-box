@@ -11,7 +11,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   rules: {
-    '@typescript-eslint/semi': ['error', 'never'],
     '@typescript-eslint/member-delimiter-style': ['error', {
       "multiline": {
         "delimiter": "comma",
@@ -21,6 +20,8 @@ module.exports = {
         "delimiter": "comma",
         "requireLast": false
       }
-    }]
+    }],
+    '@typescript-eslint/semi': ['error', 'never'],
+    '@typescript-eslint/explicit-function-return-type': 'off',
   }
 };
