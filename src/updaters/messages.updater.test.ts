@@ -57,13 +57,13 @@ describe('Messages Updater', () => {
       createdAt: Timestamp.now(),
     }
 
-    const collectionSpy = jest
+    const addSpy = jest
       .spyOn(messagesCollection, 'add')
-      .mockImplementation(() => undefined)
+      .mockImplementation(() => Promise.resolve())
 
-    createMessage(testMessage.message)
+    await createMessage(testMessage.message)
 
-    expect(collectionSpy).toHaveBeenCalledTimes(1)
-    expect(collectionSpy).toHaveBeenCalledWith(testMessage)
+    expect(addSpy).toHaveBeenCalledTimes(1)
+    expect(addSpy).toHaveBeenCalledWith(testMessage)
   })
 })

@@ -8,7 +8,7 @@ const { Timestamp } = firestore
 
 export const messagesCollection = db.collection('messages')
 export const messagesQuery = messagesCollection.orderBy('createdAt', 'desc')
-export const messageQuerySnapshotHandler = (snapshot: any): void => {
+export const messageQuerySnapshotHandler = (snapshot: any) => {
   const snapshotDocuments = snapshot
   const messages: MessageState[] = []
 
@@ -21,13 +21,11 @@ export const messageQuerySnapshotHandler = (snapshot: any): void => {
   })
 }
 
-export const listenForMessageUpdates = (): void => {
+export const listenForMessageUpdates = () => {
   messagesQuery.onSnapshot(messageQuerySnapshotHandler)
 }
 
-export const createMessage = (message: string): void => {
-  messagesCollection.add({
-    message,
-    createdAt: Timestamp.now(),
-  })
-}
+export const createMessage = (message: string) => messagesCollection.add({
+  message,
+  createdAt: Timestamp.now(),
+})
