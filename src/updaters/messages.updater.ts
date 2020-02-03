@@ -28,4 +28,4 @@ export const listenForMessageUpdates = () => {
 export const createMessage = (message: string) => messagesCollection.add({
   message,
   createdAt: Timestamp.now(),
-})
+}).then(() => undefined)

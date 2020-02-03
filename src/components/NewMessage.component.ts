@@ -3,8 +3,15 @@ import { createMessage } from '../updaters/messages.updater'
 
 const NewMessage: FC = () => {
   const [inputValue, setInputValue] = useState('')
-  const handleMessageCreation = (): void => {
-    createMessage(inputValue)
+  const [isDisabled, setIsDisabled] = useState(false)
+  const handleMessageCreation = async () => {
+    setIsDisabled(true)
+    if (inputValue.length < 1) {
+      return
+    }
+    await createMessage(inputValue)
+    setInputValue('')
+    setIsDisabled(false)
   }
 
   return e(
@@ -14,14 +21,15 @@ const NewMessage: FC = () => {
       'input',
       {
         'data-test-id': 'message-input',
+        disabled: isDisabled,
+        type: 'text',
+        value: inputValue,
         onChange: (evt) => {
           setInputValue(evt.target.value.substring(0, 80))
         },
         onKeyDown: (evt) => {
           if (evt.key === 'Enter') handleMessageCreation()
         },
-        type: 'text',
-        value: inputValue,
       },
       null,
     ),
@@ -29,6 +37,7 @@ const NewMessage: FC = () => {
       'button',
       {
         'data-test-id': 'submit-button',
+        disabled: inputValue.length < 1 || isDisabled,
         onClick: handleMessageCreation,
       },
       'Send',

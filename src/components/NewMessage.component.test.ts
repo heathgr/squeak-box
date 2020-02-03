@@ -1,10 +1,18 @@
 import { mount } from 'enzyme'
 import { createElement as e } from 'react'
+import { act } from 'react-dom/test-utils'
 
 import NewMessage from './NewMessage.component'
 import * as messageUpdater from '../updaters/messages.updater'
 
 describe('New Message Component', () => {
+  const newCreateMessageSpy = () => jest
+    .spyOn(messageUpdater, 'createMessage')
+    .mockImplementation(() => Promise.resolve(undefined))
+  const newCreateMessageSpyUnresolved = () => jest
+    .spyOn(messageUpdater, 'createMessage')
+    .mockImplementation(() => new Promise(() => {}))
+
   afterEach(() => {
     jest.resetAllMocks()
   })
@@ -12,13 +20,12 @@ describe('New Message Component', () => {
   it('Has a text input field that limits input to 80 characters.', () => {
     const subject = mount(e(NewMessage))
     const testId = '[data-test-id="message-input"]'
-    const textInput = subject.find(testId)
 
-    expect(textInput.exists()).toEqual(true)
+    expect(subject.find(testId).exists()).toEqual(true)
 
     const longInput = 'This is a very long test message.  It has more than 80 characters in it.  It is not a valid message!!!'
     const expected = longInput.substring(0, 80)
-    textInput.simulate('change', { target: { value: longInput } })
+    subject.find(testId).simulate('change', { target: { value: longInput } })
 
     expect(subject.find(testId).prop('value')).toEqual(expected)
   })
@@ -27,15 +34,11 @@ describe('New Message Component', () => {
     const subject = mount(e(NewMessage))
     const buttonTestId = '[data-test-id="submit-button"]'
     const inputTestId = '[data-test-id="message-input"]'
-    const textInput = subject.find(inputTestId)
-    const submitButton = subject.find(buttonTestId)
-    const createMessageSpy = jest
-      .spyOn(messageUpdater, 'createMessage')
-      .mockImplementation((): void => undefined)
     const testMessage = 'This is a test message.'
+    const createMessageSpy = newCreateMessageSpy()
 
-    textInput.simulate('change', { target: { value: testMessage } })
-    submitButton.simulate('click')
+    subject.find(inputTestId).simulate('change', { target: { value: testMessage } })
+    subject.find(buttonTestId).simulate('click')
 
     expect(createMessageSpy).toHaveBeenCalledTimes(1)
     expect(createMessageSpy).toHaveBeenCalledWith(testMessage)
@@ -44,16 +47,50 @@ describe('New Message Component', () => {
   it('Has an input field that invokes createMessage when enter is pressed.', () => {
     const subject = mount(e(NewMessage))
     const inputTestId = '[data-test-id="message-input"]'
-    const textInput = subject.find(inputTestId)
-    const createMessageSpy = jest
-      .spyOn(messageUpdater, 'createMessage')
-      .mockImplementation((): void => undefined)
     const testMessage = 'This is a test message.'
+    const createMessageSpy = newCreateMessageSpy()
 
-    textInput.simulate('change', { target: { value: testMessage } })
-    textInput.simulate('keyDown', { key: 'Enter' })
+    subject.find(inputTestId).simulate('change', { target: { value: testMessage } })
+    subject.find(inputTestId).simulate('keyDown', { key: 'Not Enter' })
+    subject.find(inputTestId).simulate('keyDown', { key: 'Enter' })
 
     expect(createMessageSpy).toHaveBeenCalledTimes(1)
     expect(createMessageSpy).toHaveBeenCalledWith(testMessage)
+  })
+
+  it('Disables user input when createMessage has not resolved.', () => {
+    const subject = mount(e(NewMessage))
+    const buttonTestId = '[data-test-id="submit-button"]'
+    const inputTestId = '[data-test-id="message-input"]'
+    const testMessage = 'This is a test message.'
+    newCreateMessageSpyUnresolved()
+
+    expect(subject.find(inputTestId).prop('disabled')).toEqual(false)
+    expect(subject.find(buttonTestId).prop('disabled')).toEqual(true)
+
+    subject.find(inputTestId).simulate('change', { target: { value: testMessage } })
+    subject.find(inputTestId).simulate('keyDown', { key: 'Enter' })
+
+    expect(subject.find(inputTestId).prop('disabled')).toEqual(true)
+    expect(subject.find(buttonTestId).prop('disabled')).toEqual(true)
+  })
+
+  it('Enables user input when createMessage has resolved', () => {
+    const subject = mount(e(NewMessage))
+    const buttonTestId = '[data-test-id="submit-button"]'
+    const inputTestId = '[data-test-id="message-input"]'
+    const testMessage = 'This is a test message.'
+    newCreateMessageSpy()
+
+    expect(subject.find(inputTestId).prop('disabled')).toEqual(false)
+    expect(subject.find(buttonTestId).prop('disabled')).toEqual(true)
+
+    act(() => {
+      subject.find(inputTestId).simulate('change', { target: { value: testMessage } })
+      subject.find(inputTestId).simulate('keyDown', { key: 'Enter' })
+    })
+
+    expect(subject.find(inputTestId).prop('disabled')).toEqual(false)
+    expect(subject.find(buttonTestId).prop('disabled')).toEqual(true)
   })
 })

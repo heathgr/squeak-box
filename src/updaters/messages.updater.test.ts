@@ -51,7 +51,7 @@ describe('Messages Updater', () => {
     })
   })
 
-  it('Creates new messages.', () => {
+  it('Creates new messages.', async () => {
     const testMessage = {
       message: 'Just a test',
       createdAt: Timestamp.now(),
