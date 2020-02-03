@@ -1,19 +1,25 @@
-import { firestore } from 'firebase/app'
+import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 
-import messagesStore, { MessageState } from '../stores/messages.store'
+import messagesStore, { MessageDocument, MessageState } from '../stores/messages.store'
 import { db } from '../services'
 
+const { firestore } = firebase
 const { Timestamp } = firestore
 
-export const messagesCollection = db.collection('messages')
+type MessagesCollection = firebase.firestore.CollectionReference<MessageDocument>
+type MessagesSnapshot = firebase.firestore.QuerySnapshot<MessageDocument>
+
+export const messagesCollection = db.collection('messages') as MessagesCollection
 export const messagesQuery = messagesCollection.orderBy('createdAt', 'desc')
-export const messageQuerySnapshotHandler = (snapshot: any) => {
-  const snapshotDocuments = snapshot
+export const messageQuerySnapshotHandler = (snapshot: MessagesSnapshot) => {
   const messages: MessageState[] = []
 
-  snapshotDocuments.forEach((doc: any) => {
-    messages.push(doc.data() as MessageState)
+  snapshot.forEach((doc) => {
+    messages.push({
+      ...doc.data(),
+      id: doc.id,
+    })
   })
 
   messagesStore.update({

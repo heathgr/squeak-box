@@ -3,9 +3,13 @@ import { firestore } from 'firebase/app'
 import 'firebase/firestore'
 
 
-export interface MessageState {
+export interface MessageDocument {
   message: string,
   createdAt: firestore.Timestamp,
+}
+
+export interface MessageState extends MessageDocument {
+  id: string,
 }
 
 export interface MessagesState {
