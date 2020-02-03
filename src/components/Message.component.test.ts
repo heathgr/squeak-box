@@ -11,6 +11,7 @@ const { Timestamp } = firestore
 describe('Message', () => {
   it('Renders the message text.', () => {
     const testMessage: MessageState = {
+      id: 'test-id',
       message: 'I like messages',
       createdAt: Timestamp.now(),
     }

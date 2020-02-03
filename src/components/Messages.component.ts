@@ -11,7 +11,7 @@ const Messages: FC = () => {
   return e(
     'div',
     null,
-    messages.map((message, i) => e(Message, { ...message, key: i })),
+    messages.map((message) => e(Message, { ...message, key: message.id })),
   )
 }
 
