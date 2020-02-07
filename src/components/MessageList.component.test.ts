@@ -4,8 +4,8 @@ import { firestore } from 'firebase/app'
 import 'firebase/firestore'
 import * as useStoreHook from '@s-is-for-store/react'
 
-import MessageList from './MessageList.component'
 import Message from './Message.component'
+import MessageList from './MessageList.component'
 import { MessageState } from '../stores/messages.store'
 
 const { Timestamp } = firestore

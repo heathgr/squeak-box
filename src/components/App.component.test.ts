@@ -4,12 +4,13 @@ import { createElement as e } from 'react'
 import App from './App.component'
 import Footer from './Footer.component'
 import MessageList from './MessageList.component'
+import Header from './Header.component'
 
 describe('App Component', () => {
-  it('Displays a header.', () => {
+  it('Displays a Header comonent.', () => {
     const subject = shallow(e(App))
 
-    expect(subject.find('h1').text()).toEqual('Squeak Box')
+    expect(subject.find(Header).exists()).toEqual(true)
   })
 
   it('Displays a Footer component.', () => {

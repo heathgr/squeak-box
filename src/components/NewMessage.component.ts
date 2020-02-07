@@ -1,4 +1,9 @@
-import { createElement as e, FC, useState } from 'react'
+import {
+  createElement as e,
+  FC,
+  Fragment,
+  useState,
+} from 'react'
 import { createMessage } from '../updaters/messages.updater'
 
 const NewMessage: FC = () => {
@@ -15,7 +20,7 @@ const NewMessage: FC = () => {
   }
 
   return e(
-    'div',
+    Fragment,
     null,
     e(
       'input',

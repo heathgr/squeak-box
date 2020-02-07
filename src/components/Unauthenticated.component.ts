@@ -1,8 +1,12 @@
-import { createElement as e, FC } from 'react'
+import {
+  createElement as e,
+  FC,
+  Fragment,
+} from 'react'
 import { signIn } from '../services'
 
 const Unauthenticated: FC = () => e(
-  'div',
+  Fragment,
   null,
   e(
     'button',

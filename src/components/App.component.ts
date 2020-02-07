@@ -4,10 +4,11 @@ import { createUseStyles } from 'react-jss'
 import MessageList from './MessageList.component'
 import Footer from './Footer.component'
 import { displayFlex, FlexDirection } from '../styles/common'
+import Header from './Header.component'
 
 const useAppStyles = createUseStyles({
   app: {
-    ...displayFlex(FlexDirection.ROW),
+    ...displayFlex(FlexDirection.COLUMN),
     height: '100%',
     width: '100%',
   },
@@ -21,7 +22,7 @@ const App: FC = () => {
     {
       className: appStyles.app,
     },
-    e('h1', null, 'Squeak Box'),
+    e(Header),
     e(MessageList),
     e(Footer),
   )

@@ -9,6 +9,10 @@ export const root = () => ({
     body: {
       overflow: 'hidden',
     },
+    h1: {
+      display: 'inline-block',
+      margin: '0px',
+    },
   },
 })
 
