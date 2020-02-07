@@ -4,24 +4,25 @@ import { firestore } from 'firebase/app'
 import 'firebase/firestore'
 import * as useStoreHook from '@s-is-for-store/react'
 
-import Messages from './Messages.component'
+import MessageList from './MessageList.component'
 import Message from './Message.component'
+import { MessageState } from '../stores/messages.store'
 
 const { Timestamp } = firestore
 
 describe('Messages Component', () => {
   it('Displays a list of messages', () => {
-    const messages = [
-      { message: 'test message 1', createdAt: Timestamp.now() },
-      { message: 'test message 2', createdAt: Timestamp.now() },
-      { message: 'test message 3', createdAt: Timestamp.now() },
+    const messages: MessageState[] = [
+      { id: '1', message: 'test message 1', createdAt: Timestamp.now() },
+      { id: '2', message: 'test message 2', createdAt: Timestamp.now() },
+      { id: '3', message: 'test message 3', createdAt: Timestamp.now() },
     ]
 
     jest.spyOn(useStoreHook, 'useStore').mockReturnValue({
       messages,
     })
 
-    const subject = shallow(e(Messages))
+    const subject = shallow(e(MessageList))
 
     const messageWrappers = subject.find(Message)
     const messageCount = messageWrappers.length

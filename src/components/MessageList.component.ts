@@ -4,7 +4,7 @@ import { useStore } from '@s-is-for-store/react'
 import messagesStore from '../stores/messages.store'
 import Message from './Message.component'
 
-const Messages: FC = () => {
+const MessageList: FC = () => {
   const store = useStore(messagesStore)
   const { messages } = store
 
@@ -15,4 +15,4 @@ const Messages: FC = () => {
   )
 }
 
-export default Messages
+export default MessageList

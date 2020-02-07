@@ -3,7 +3,7 @@ import { createElement as e } from 'react'
 
 import App from './App.component'
 import Footer from './Footer.component'
-import Messages from './Messages.component'
+import MessageList from './MessageList.component'
 
 describe('App Component', () => {
   it('Displays a header.', () => {
@@ -21,6 +21,6 @@ describe('App Component', () => {
   it('Displays a MessageList component.', () => {
     const subject = shallow(e(App))
 
-    expect(subject.find(Messages).exists()).toEqual(true)
+    expect(subject.find(MessageList).exists()).toEqual(true)
   })
 })
