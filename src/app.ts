@@ -17,7 +17,7 @@ listenForMessageUpdates()
 
 // create global styles
 jss.setup(preset())
-jss.createStyleSheet(root).attach()
+jss.createStyleSheet(root()).attach()
 
 const appContainer = document.getElementById('app')
 
