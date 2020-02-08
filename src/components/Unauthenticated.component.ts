@@ -3,7 +3,7 @@ import {
   FC,
   Fragment,
 } from 'react'
-import { signIn } from '../services'
+import { signIn } from '../updaters/auth.updater'
 
 const Unauthenticated: FC = () => e(
   Fragment,
