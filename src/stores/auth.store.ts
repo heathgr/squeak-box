@@ -1,12 +1,20 @@
-import { User } from 'firebase/app'
+import * as firebase from 'firebase/app'
 import { createStore } from 's-is-for-store'
 
+export type UserValue = firebase.User | null
+
 export interface AuthState {
-  user: User | null,
+  user: {
+    value: UserValue,
+    isPending: boolean,
+  },
 }
 
 export const initialState: AuthState = {
-  user: null,
+  user: {
+    value: null,
+    isPending: true,
+  },
 }
 
 const authStore = createStore<AuthState>(initialState)

@@ -29,13 +29,14 @@ const useFooterStyles = createUseStyles({
 const Footer: FC = () => {
   const authState = useStore(authStore)
   const footerStyles = useFooterStyles()
+  const user = authState.user.value
 
   return e(
     'footer',
     {
       className: footerStyles.container,
     },
-    authState.user ? e(NewMessage) : e(Unauthenticated),
+    user ? e(NewMessage) : e(Unauthenticated),
   )
 }
 

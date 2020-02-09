@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme'
 import { createElement as e } from 'react'
-import { User } from 'firebase/app'
 
-import authStore, { initialState } from '../stores/auth.store'
+import authStore, { initialState, UserValue } from '../stores/auth.store'
+import { updateUser } from '../updaters/auth.updater'
 import Footer from './Footer.component'
 import Unauthenticated from './Unauthenticated.component'
 import NewMessage from './NewMessage.component'
@@ -13,7 +13,7 @@ describe('Footer Component', () => {
   })
 
   it('Should display the Unauthenticated component if the user is not signed in.', () => {
-    authStore.update({ user: null })
+    updateUser(null)
 
     const subject = shallow(e(Footer))
 
@@ -21,7 +21,8 @@ describe('Footer Component', () => {
   })
 
   it('Should display the NewMessage component if the user is signed in', () => {
-    authStore.update({ user: {} as User })
+    const testUser = {} as UserValue
+    updateUser(testUser)
 
     const subject = shallow(e(Footer))
 

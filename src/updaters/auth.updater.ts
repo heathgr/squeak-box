@@ -1,9 +1,22 @@
 import * as firebase from 'firebase/app'
 import { auth } from '../services'
-import authStore from '../stores/auth.store'
+import authStore, { UserValue } from '../stores/auth.store'
 
-export const handleOnAuthStateChanged = (user: firebase.User | null): void => {
-  authStore.update({ user })
+export const updateUser = (userValue: UserValue, isPending = false) => {
+  const currentState = authStore.current()
+
+  authStore.update({
+    ...currentState,
+    user: {
+      value: userValue,
+      isPending,
+    },
+  })
+}
+
+export const handleOnAuthStateChanged = (user: UserValue): void => {
+  // authStore.update({ user })
+  updateUser(user, false)
 }
 
 export const listenForAuthStateChanges = (): void => {
