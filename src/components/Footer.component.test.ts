@@ -6,10 +6,19 @@ import { updateUser } from '../updaters/auth.updater'
 import Footer from './Footer.component'
 import Unauthenticated from './Unauthenticated.component'
 import NewMessage from './NewMessage.component'
+import Loader from './Loader.component'
 
 describe('Footer Component', () => {
   beforeEach(() => {
     authStore.update(initialState)
+  })
+
+  it('Displays a Loader component it the authentication status is pending.', () => {
+    updateUser(null, true)
+
+    const subject = shallow(e(Footer))
+
+    expect(subject.find(Loader).exists()).toEqual(true)
   })
 
   it('Should display the Unauthenticated component if the user is not signed in.', () => {
