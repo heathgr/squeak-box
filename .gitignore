@@ -3,3 +3,8 @@ coverage/
 node_modules/
 firebase.config.ts
 app.js
+
+.DS_Store
+
+cypress/videos
+cypress/screenshots
