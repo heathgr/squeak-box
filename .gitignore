@@ -4,6 +4,7 @@ node_modules/
 firebase.config.ts
 app.js
 
+*.log
 .DS_Store
 
 cypress/videos
