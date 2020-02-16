@@ -2,7 +2,9 @@ build/
 coverage/
 node_modules/
 firebase.config.ts
+firebase.config.development.ts
 app.js
+.firebase/
 
 *.log
 .DS_Store

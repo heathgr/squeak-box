@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const path = require('path')
+const { join, resolve } = require('path')
 
 module.exports = {
-  entry: path.join(__dirname, 'src/app.ts'),
+  entry: join(__dirname, 'src/app.ts'),
   devServer: {
-    contentBase: path.join(__dirname, 'static'),
+    contentBase: join(__dirname, 'static'),
   },
   output: {
     filename: 'app.js',
@@ -22,5 +22,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      firebaseConfig: resolve(__dirname, 'firebase.config.ts'),
+    },
   },
 }
