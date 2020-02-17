@@ -22,8 +22,5 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    alias: {
-      firebaseConfig: resolve(__dirname, 'firebase.config.ts'),
-    },
   },
 }
