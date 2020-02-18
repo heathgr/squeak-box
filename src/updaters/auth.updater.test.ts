@@ -5,7 +5,7 @@ import authStore, { initialState, AuthState } from '../stores/auth.store'
 import { auth } from '../services'
 
 const {
-  listenForAuthStateChanges, handleOnAuthStateChanged, signIn, updateUser,
+  listenForAuthStateChanges, handleOnAuthStateChanged, signIn, signOut, updateUser,
 } = updater
 
 describe('Auth Updater', () => {
@@ -54,7 +54,7 @@ describe('Auth Updater', () => {
     expect(updateSpy).toHaveBeenCalledWith(testUser, false)
   })
 
-  it('Triggers a sign in redirect when signIn is invoked.', () => {
+  it('Redirects to the sign page when signIn() is called.', () => {
     const signInSpy = jest
       .spyOn(auth, 'signInWithRedirect')
       .mockImplementation((provider: firebase.auth.AuthProvider) => {
@@ -74,5 +74,15 @@ describe('Auth Updater', () => {
 
     expect(signInSpy).toHaveBeenCalledTimes(1)
     expect(signInSpy).toHaveBeenCalledWith(provider)
+  })
+
+  it('Signs out the user when signOut() is called.', () => {
+    const signOutSpy = jest
+      .spyOn(auth, 'signOut')
+      .mockImplementation(() => Promise.resolve(undefined))
+
+    signOut()
+
+    expect(signOutSpy).toHaveBeenCalledTimes(1)
   })
 })
