@@ -4,8 +4,6 @@ import 'firebase/firestore'
 
 import config from './firebase.config'
 
-console.log('fb config', config)
-
 export const app = firebase.initializeApp(config)
 export const db = firebase.firestore()
 export const auth = firebase.auth()
