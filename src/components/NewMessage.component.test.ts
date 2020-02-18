@@ -4,6 +4,7 @@ import { act } from 'react-dom/test-utils'
 
 import NewMessage from './NewMessage.component'
 import * as messageUpdater from '../updaters/messages.updater'
+import * as authUpdater from '../updaters/auth.updater'
 
 describe('New Message Component', () => {
   const newCreateMessageSpy = () => jest
@@ -12,6 +13,9 @@ describe('New Message Component', () => {
   const newCreateMessageSpyUnresolved = () => jest
     .spyOn(messageUpdater, 'createMessage')
     .mockImplementation(() => new Promise(() => {}))
+  const newSignOutSpy = () => jest
+    .spyOn(authUpdater, 'signOut')
+    .mockImplementation(() => Promise.resolve(undefined))
 
   afterEach(() => {
     jest.resetAllMocks()
@@ -92,5 +96,16 @@ describe('New Message Component', () => {
 
     expect(subject.find(inputTestId).prop('disabled')).toEqual(false)
     expect(subject.find(buttonTestId).prop('disabled')).toEqual(true)
+  })
+
+  it('Has a sign out button', async () => {
+    const subject = mount(e(NewMessage))
+    const buttonTestId = '[data-test-id="sign-out-button"]'
+    const signOutSpy = jest.spyOn(authUpdater, 'signOut')
+
+    subject.find(buttonTestId).simulate('click')
+
+    await new Promise((resolve) => setTimeout(() => resolve(), 4000))
+    expect(signOutSpy).toHaveBeenCalledTimes(1)
   })
 })

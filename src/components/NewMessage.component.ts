@@ -5,6 +5,7 @@ import {
   useState,
 } from 'react'
 import { createMessage } from '../updaters/messages.updater'
+import { signOut } from '../updaters/auth.updater'
 
 const NewMessage: FC = () => {
   const [inputValue, setInputValue] = useState('')
@@ -46,6 +47,14 @@ const NewMessage: FC = () => {
         onClick: handleMessageCreation,
       },
       'Send',
+    ),
+    e(
+      'button',
+      {
+        'data-test-id': 'sign-out-button',
+        onClick: () => signOut(),
+      },
+      'Sign Out',
     ),
   )
 }
