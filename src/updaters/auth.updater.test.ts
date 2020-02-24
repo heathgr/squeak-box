@@ -45,8 +45,6 @@ describe('Auth Updater', () => {
     expect(updateSpy).toHaveBeenCalledTimes(1)
     expect(updateSpy).toHaveBeenCalledWith(null, false)
 
-
-    // TODO: split into another test?
     updateSpy.mockReset()
     handleOnAuthStateChanged(testUser)
 

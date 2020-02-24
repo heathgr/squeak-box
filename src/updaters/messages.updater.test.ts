@@ -6,7 +6,7 @@ import {
   listenForMessageUpdates,
   messagesCollection,
   messagesQuery,
-  createMessage,
+  addMessage,
 } from './messages.updater'
 import messagesStore, { MessageState } from '../stores/messages.store'
 
@@ -16,11 +16,11 @@ describe('Messages Updater', () => {
   it('Update the messages store based on messages updates.', () => {
     const message1 = {
       message: 'message one',
-      createdAt: Timestamp.now(),
+      createdAt: Timestamp.fromDate(new Date(2020, 2, 15)),
     }
     const message2 = {
       message: 'message two',
-      createdAt: Timestamp.now(),
+      createdAt: Timestamp.fromDate(new Date(2020, 2, 16)),
     }
 
     const testSnapshot = [
@@ -61,7 +61,7 @@ describe('Messages Updater', () => {
       .spyOn(messagesCollection, 'add')
       .mockImplementation(() => Promise.resolve())
 
-    await createMessage(testMessage.message)
+    await addMessage(testMessage.message)
 
     expect(addSpy).toHaveBeenCalledTimes(1)
     expect(addSpy).toHaveBeenCalledWith(testMessage)

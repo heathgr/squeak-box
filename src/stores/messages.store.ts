@@ -2,7 +2,6 @@ import { createStore } from 's-is-for-store'
 import { firestore } from 'firebase/app'
 import 'firebase/firestore'
 
-
 export interface MessageDocument {
   message: string,
   createdAt: firestore.Timestamp,

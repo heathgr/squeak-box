@@ -9,6 +9,7 @@ const { Timestamp } = firestore
 
 type MessagesCollection = firebase.firestore.CollectionReference<MessageDocument>
 type MessagesSnapshot = firebase.firestore.QuerySnapshot<MessageDocument>
+export type AddMessagePromise = Promise<firebase.firestore.DocumentReference<MessageDocument>>
 
 export const messagesCollection = db.collection('messages') as MessagesCollection
 export const messagesQuery = messagesCollection.orderBy('createdAt', 'desc')
@@ -31,7 +32,7 @@ export const listenForMessageUpdates = () => {
   messagesQuery.onSnapshot(messageQuerySnapshotHandler)
 }
 
-export const createMessage = (message: string) => messagesCollection.add({
+export const addMessage = (message: string) => messagesCollection.add({
   message,
   createdAt: Timestamp.now(),
 }).then(() => undefined)

@@ -2,22 +2,23 @@ import {
   createElement as e,
   FC,
   Fragment,
-  useState,
 } from 'react'
-import { createMessage } from '../updaters/messages.updater'
+import { useStore } from '@s-is-for-store/react'
+
 import { signOut } from '../updaters/auth.updater'
+import { createMessage, setInput } from '../updaters/createMessageForm.updater'
+import createMessageFormStore from '../stores/createMessageForm.store'
 
 const NewMessage: FC = () => {
-  const [inputValue, setInputValue] = useState('')
-  const [isDisabled, setIsDisabled] = useState(false)
-  const handleMessageCreation = async () => {
-    setIsDisabled(true)
-    if (inputValue.length < 1) {
-      return
-    }
-    await createMessage(inputValue)
-    setInputValue('')
-    setIsDisabled(false)
+  const store = useStore(createMessageFormStore)
+  const {
+    input,
+    isPending,
+    isValid,
+    validationError,
+  } = store
+  const onSubmit = () => {
+    if (isValid) createMessage(input)
   }
 
   return e(
@@ -27,14 +28,14 @@ const NewMessage: FC = () => {
       'input',
       {
         'data-test-id': 'message-input',
-        disabled: isDisabled,
+        disabled: isPending,
         type: 'text',
-        value: inputValue,
+        value: input,
         onChange: (evt) => {
-          setInputValue(evt.target.value.substring(0, 80))
+          setInput(evt.target.value)
         },
         onKeyDown: (evt) => {
-          if (evt.key === 'Enter') handleMessageCreation()
+          if (evt.key === 'Enter') onSubmit()
         },
       },
       null,
@@ -43,8 +44,8 @@ const NewMessage: FC = () => {
       'button',
       {
         'data-test-id': 'submit-button',
-        disabled: inputValue.length < 1 || isDisabled,
-        onClick: handleMessageCreation,
+        disabled: isPending || !isValid,
+        onClick: onSubmit,
       },
       'Send',
     ),
@@ -55,6 +56,13 @@ const NewMessage: FC = () => {
         onClick: () => signOut(),
       },
       'Sign Out',
+    ),
+    !isValid && e(
+      'p',
+      {
+        'data-test-id': 'validation-error-message',
+      },
+      validationError,
     ),
   )
 }
