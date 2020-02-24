@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "squeakbox-49077",
+    "production": "squeakbox-49077",
     "development": "squeakbox-development"
   }
 }
