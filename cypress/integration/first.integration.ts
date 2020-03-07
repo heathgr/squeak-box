@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 it('works', () => {
   cy.callFirestore('set', '/messages/test-id-1', {
     createdAt: new Date().toISOString(),
