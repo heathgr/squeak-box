@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { join, resolve } = require('path')
+const { join } = require('path')
 
 module.exports = {
   entry: join(__dirname, 'src/app.ts'),
