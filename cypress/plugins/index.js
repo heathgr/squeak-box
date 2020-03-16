@@ -18,3 +18,8 @@
 // `config` is the resolved Cypress config
 
 // Return extended config (with settings from .firebaserc)
+
+
+module.exports = (on, config) => {
+  // configure plugins here
+}

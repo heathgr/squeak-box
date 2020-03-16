@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "npm test && webpack -o ./public/app.js --mode \"production\" && firebase deploy",
+    "deploy": "npm test && webpack -o ./public/app.js --mode 'production' && firebase deploy",
+    "cy:run": "cypress run --headed",
     "start": "webpack-dev-server",
-    "test": "eslint --ext .ts ./src && jest"
+    "test": "npm run test:lint && npm run test:unit && npm run test:e2e",
+    "test:e2e": "webpack --config webpack.config.development.js -o ./public/app.js --mode 'development' && ./scripts/runEnd2End.ts",
+    "test:lint": "eslint --ext .ts ./src",
+    "test:unit": "jest"
   },
   "author": "Grant Heath",
   "license": "UNLICENSED",
@@ -21,6 +25,7 @@
     "s-is-for-store": "^3.0.1"
   },
   "devDependencies": {
+    "@types/concurrently": "^5.1.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/express": "^4.17.3",
@@ -33,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.1.0",
     "cypress": "^4.0.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
