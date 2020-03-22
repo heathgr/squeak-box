@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable @typescript-eslint/no-namespace */
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -25,3 +24,23 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      addMessage: typeof addMessage,
+      clearDatabase: typeof clearDatabase,
+    }
+  }
+}
+
+export const clearDatabase = () => {
+  cy.task('clearDatabase')
+}
+
+export const addMessage = (id: string, message: string, createdAt: Date) => {
+  cy.task('addMessage', { id, message, createdAt })
+}
+
+Cypress.Commands.add('clearDatabase', clearDatabase)
+Cypress.Commands.add('addMessage', addMessage)

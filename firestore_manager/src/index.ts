@@ -72,8 +72,7 @@ export const deleteAll = async () => {
   const rootCollections = await db.listCollections()
 
   console.log('Clearing the database.  Deleting all documents and collections.')
-  await Promise.all(rootCollections.map((collection) => deleteCollection(collection)))
-  console.log('The database is empty.')
+  return Promise.all(rootCollections.map((collection) => deleteCollection(collection)))
 }
 
 export const mintToken = async (id: string) => {
