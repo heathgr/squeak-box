@@ -10,6 +10,7 @@ module.exports = {
   devServer: {
     contentBase: join(__dirname, 'static'),
   },
+  devtool: 'eval-source-map',
   output: {
     filename: 'app.js',
     path: __dirname,
