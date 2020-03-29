@@ -18,6 +18,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
+    - run: echo "$SERVICE_ACCOUNT_CREDENTIALS" > serviceAccount.json
     - run: npm ci
     - run: npm run test:full
 
@@ -29,3 +30,4 @@ jobs:
       FIREBASE_BUCKET: ${{secrets.development.DEVELOPMENT_FIREBASE_BUCKET}}
       FIREBASE_MESSAGING_ID: ${{secrets.development.DEVELOPMENT_FIREBASE_MESSAGING_ID}}
       FIREBASE_APP_ID: ${{secrets.development.DEVELOPMENT_FIREBASE_APP_ID}}
+      SERVICE_ACCOUNT_CREDENTIALS: ${{secrets.SERVICE_ACCOUNT_CREDENTIALS}}
