@@ -3,6 +3,8 @@ const { DefinePlugin } = require('webpack')
 const { join } = require('path')
 const env = require('./getEnvironment')
 
+console.log('Development Environment: ', env)
+
 module.exports = {
   entry: join(__dirname, 'src/app.ts'),
   devServer: {
