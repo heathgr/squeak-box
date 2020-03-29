@@ -1,9 +1,6 @@
 build/
 coverage/
 node_modules/
-firebase.config.ts
-firebase.config.development.js
-firebase.config.development.ts
 app.js
 .firebase/
 
@@ -15,3 +12,4 @@ cypress/screenshots
 
 cypress.env.json
 serviceAccount.json
+environment.*.sh

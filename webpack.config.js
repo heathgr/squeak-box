@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-
+const { DefinePlugin } = require('webpack')
 const { join } = require('path')
+const env = require('./getEnvironment')
 
 module.exports = {
   entry: join(__dirname, 'src/app.ts'),
@@ -20,6 +21,11 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new DefinePlugin({
+      env,
+    }),
+  ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },

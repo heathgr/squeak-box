@@ -1,3 +1,5 @@
+const env = require('./getEnvironment')
+
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
@@ -9,5 +11,6 @@ module.exports = {
     'ts-jest': {
       isolatedModules: true,
     },
+    env,
   },
 }
