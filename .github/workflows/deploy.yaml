@@ -46,6 +46,7 @@ jobs:
         node-version: 12.x
     - run: echo "$SERVICE_ACCOUNT_CREDENTIALS" > serviceAccount.json
     - run: npm ci
+    - run: (cd functions/ && npm ci)
     - run: npm run deploy
 
     env:
