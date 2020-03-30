@@ -29,7 +29,7 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
-    - run: npm ci
+    - run: npm install
 
   test:
     needs: setup
@@ -41,6 +41,17 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
+    - name: Cache node modules
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
     - run: echo "$SERVICE_ACCOUNT_CREDENTIALS" > serviceAccount.json
     - run: npm run test:full
 
