@@ -10,7 +10,6 @@ on:
 jobs:
 
   test_and_build:
-    needs: setup
     runs-on: ubuntu-latest
 
     steps:
