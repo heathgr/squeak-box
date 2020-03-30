@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  test and build:
+  test_and_build:
     needs: setup
     runs-on: ubuntu-latest
 
