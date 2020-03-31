@@ -52,9 +52,11 @@ describe('Messages Updater', () => {
   })
 
   it('Creates new messages.', async () => {
+    const timeSteamp = Timestamp.now()
+
     const testMessage = {
       message: 'Just a test',
-      createdAt: Timestamp.now(),
+      createdAt: timeSteamp,
     }
 
     const addSpy = jest
