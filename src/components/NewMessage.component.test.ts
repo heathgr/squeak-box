@@ -21,10 +21,10 @@ describe('New Message Component', () => {
     jest.resetAllMocks()
   })
 
-  const messageInputSelector = '[data-test-id="message-input"]'
-  const submitButtonSelector = '[data-test-id="submit-button"]'
   const signOutButtonSelector = '[data-test-id="sign-out-button"]'
-  const validationErrorMessageSelector = '[data-test-id="validation-error-message"]'
+  const messageInputSelector = 'form > [data-test-id="message-input"]'
+  const submitButtonSelector = 'form > [data-test-id="submit-button"]'
+  const validationErrorMessageSelector = 'form > [data-test-id="validation-error-message"]'
   const useCreateMessageSpy = () => jest
     .spyOn(createMessageFormUpdater, 'createMessage')
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -32,6 +32,10 @@ describe('New Message Component', () => {
   const useSignOutSpy = () => jest
     .spyOn(authUpdater, 'signOut')
     .mockImplementation(() => undefined)
+
+  it('Renders a form.', () => {
+    expect(subject.find('form').exists()).toEqual(true)
+  })
 
   it('Has a text input field with a value that is determied by the input state value.', () => {
     const expected = 'This is a test message!!'

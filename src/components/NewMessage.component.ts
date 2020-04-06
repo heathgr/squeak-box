@@ -22,7 +22,7 @@ const NewMessage: FC = () => {
   }
 
   return e(
-    Fragment,
+    'form',
     null,
     e(
       'input',
